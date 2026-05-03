@@ -1,126 +1,110 @@
-# Tiysa POS (Point of Sale System)
+<div align="center">
+  <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/shopping-bag.svg" width="80" alt="Tiysa POS Logo">
+  
+  # 🚀 Tiysa POS
+  
+  **Sistem Point of Sale (POS) Generasi Terbaru**
 
-Tiysa POS adalah aplikasi kasir (Point of Sale) berbasis web yang modern, cepat, dan responsif. Dirancang untuk memudahkan pengelolaan transaksi penjualan, manajemen inventaris produk, serta memantau laporan pendapatan secara *real-time* dengan antarmuka pengguna yang elegan dan intuitif.
+  [![Laravel 11](https://img.shields.io/badge/Laravel-11-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+  [![PHP 8.2+](https://img.shields.io/badge/PHP-8.2%2B-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+  [![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev)
+  [![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+</div>
+
+---
+
+## 🌌 Visi Proyek
+
+**Tiysa POS** adalah sistem Point of Sale (POS) generasi terbaru yang dirancang dengan fokus utama pada efisiensi transaksi, antarmuka *dark mode* yang elegan, dan performa tinggi. Dibangun untuk memberikan pengalaman pengguna yang profesional, futuristik, dan responsif.
+
+![Tiysa POS Dashboard](image_fc4e18.png)
+
+---
+
+## ⚡ Fitur Utama
+
+- 🔐 **Modern Auth UI**: Antarmuka login dengan desain kaca (*glassmorphism*) yang elegan dan *glowing effects*.
+- 🛡️ **RBAC (Role-Based Access Control)**: Pemisahan hak akses yang jelas antara *Administrator* dan *Kasir*.
+- 📱 **Responsive Design**: Tampilan yang menyesuaikan dengan mulus di berbagai perangkat (Desktop, Tablet, Mobile).
+- 🛒 **Manajemen Transaksi Cepat**: Alur kerja kasir yang dioptimalkan untuk kecepatan dan kemudahan.
+- 🎨 **Dark Mode Penuh**: Mengurangi kelelahan mata sekaligus memberikan tampilan premium berkat integrasi *Tailwind CSS*.
 
 ---
 
 ## 🛠️ Tech Stack
 
-Proyek ini dibangun menggunakan teknologi terbaru dan terbaik untuk memastikan performa dan pengalaman pengguna yang optimal:
-
-- **Framework:** [Laravel 11+](https://laravel.com/) (PHP)
-- **Reaktivitas:** [Livewire 3](https://livewire.laravel.com/) (Dynamic Interfaces without writing JS)
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) (Utility-first framework dengan tema Light Mode yang modern dan profesional)
-- **Database:** [MySQL](https://www.mysql.com/) / MariaDB
-- **Visualisasi Data:** [Chart.js](https://www.chartjs.org/) (Untuk grafik statistik pendapatan)
-
----
-
-## ✨ Fitur Utama
-
-- **📊 Dashboard Statistik:** Menampilkan ringkasan pendapatan hari ini, total transaksi, jumlah produk terjual, dan rata-rata nilai transaksi beserta grafik pendapatan yang interaktif.
-- **🛒 POS Kasir (Live):** Antarmuka kasir dinamis menggunakan Livewire yang mendukung pencarian produk secara *real-time* dan kalkulasi harga instan tanpa perlu memuat ulang (refresh) halaman.
-- **📦 Manajemen Produk (Inventory):** Pengelolaan data produk secara lengkap (CRUD) meliputi nama barang, stok, harga beli, harga jual, dan kategori.
-- **📄 Laporan Penjualan:** Modul rekapitulasi penjualan untuk memantau riwayat transaksi dan pendapatan dalam periode tertentu.
-- **👥 User Management (Role-based):** Sistem autentikasi dengan hak akses berbasis *role* (Admin & Kasir) untuk membatasi fitur berdasarkan peran pengguna.
+| Kategori | Teknologi | Deskripsi |
+| :--- | :--- | :--- |
+| **Core** | Laravel 11 (PHP 8.2+) | *Framework backend* modern, aman, dan berkinerja tinggi. |
+| **Frontend** | Tailwind CSS | *Utility-first* CSS untuk gaya yang kustom dan implementasi *Dark Mode*. |
+| **Icons** | Lucide Icons | Kumpulan ikon yang minimalis, modern, dan ringan. |
+| **Asset Bundler** | Vite | *Build tool* generasi berikutnya untuk proses *bundling* instan. |
+| **Database** | MySQL / MariaDB | Relasional database yang kuat dan dapat diandalkan. |
 
 ---
 
-## 🚀 Panduan Instalasi (Langkah demi Langkah)
+## 🔑 Kredensial Akun Demo
 
-Ikuti langkah-langkah berikut untuk menjalankan proyek Tiysa POS di mesin lokal Anda.
+Sistem dilengkapi dengan data *dummy* agar Anda bisa langsung mencoba fitur-fiturnya. Semua akun menggunakan sandi *default* yang sama.
 
-### 1. Clone Repository
+| Peran (*Role*) | Alamat Email | Keterangan |
+| :--- | :--- | :--- |
+| **Administrator** | `admin@tiysapos.com` | Akses penuh ke sistem, manajemen produk & staf. |
+| **Kasir** | `senja@tiysapos.com` | Kasir 1 |
+| **Kasir** | `muthia@tiysapos.com` | Kasir 2 |
+| **Kasir** | `melani@tiysapos.com` | Kasir 3 |
+| **Kasir** | `dorkas@tiysapos.com` | Kasir 4 |
+| **Kasir** | `araxsa@tiysapos.com` | Kasir 5 |
+
+> **🗝️ Default Password:** `password` (untuk semua akun di atas).
+
+---
+
+## 🚀 Panduan Instalasi
+
+Ikuti langkah-langkah di bawah ini untuk menginstal dan menjalankan **Tiysa POS** di lingkungan lokal Anda.
+
+### 1. Kloning Repositori
 ```bash
-git clone https://github.com/username-anda/tiysa-pos.git
-cd tiysa-pos
+git clone https://github.com/username/tiysapos.git
+cd tiysapos
 ```
 
-### 2. Instalasi Dependensi PHP (Composer)
+### 2. Instalasi Dependensi PHP & Node.js
 ```bash
 composer install
-```
-
-### 3. Instalasi Dependensi Node.js (NPM)
-```bash
 npm install
 ```
 
-### 4. Konfigurasi Environment (.env)
-Salin file konfigurasi *environment* dan sesuaikan dengan pengaturan database Anda.
+### 3. Konfigurasi Environment
+Salin file `.env.example` menjadi `.env` lalu sesuaikan kredensial database Anda (`DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`).
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
-Buka file `.env` dan atur koneksi database:
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=tiysa_pos
-DB_USERNAME=root
-DB_PASSWORD=
-```
 
-### 5. Jalankan Migrasi Database
-Buat tabel dan data awal di database Anda dengan perintah:
+### 4. Migrasi & Seeding Database
+Perintah ini akan membuat struktur tabel baru dan mengisinya dengan data *dummy* Minimarket beserta akun demo.
 ```bash
-php artisan migrate
+php artisan migrate:fresh --seed
 ```
-*(Opsional)* Jika tersedia file seeder untuk data dummy:
+
+### 5. Kompilasi Aset Frontend (Vite)
 ```bash
-php artisan migrate --seed
+npm run dev
+# atau untuk build produksi: npm run build
 ```
 
-### 6. Menjalankan Server Lokal
-Anda perlu menjalankan server PHP dan Vite (untuk *asset compilation* Tailwind CSS) secara bersamaan. Buka dua terminal terpisah:
-
-**Terminal 1:**
+### 6. Jalankan Local Server
+Buka terminal baru dan jalankan:
 ```bash
 php artisan serve
 ```
-
-**Terminal 2:**
-```bash
-npm run dev
-```
-Aplikasi kini dapat diakses melalui browser di alamat: `http://localhost:8000`
+Aplikasi dapat diakses di: `http://localhost:8000`
 
 ---
 
-## 🗄️ Struktur Database
-
-Aplikasi ini menggunakan beberapa tabel utama untuk menyimpan data:
-
-- `users`: Menyimpan data pengguna aplikasi, dilengkapi kolom `role` ('admin' atau 'kasir') untuk manajemen hak akses.
-- `products`: Menyimpan katalog barang, mencakup informasi nama, sisa stok, harga pembelian, dan harga jual.
-- `transactions`: Mencatat *header* transaksi penjualan yang berelasi dengan pengguna (kasir), mencakup total harga, metode pembayaran, dan waktu transaksi.
-- `transaction_details`: Menyimpan detail setiap barang yang terjual dalam sebuah transaksi (berelasi ke `transactions` dan `products`), mencakup jumlah (qty) dan perhitungan subtotal per item.
-
----
-
-## 📖 Panduan Penggunaan (Usage Guide)
-
-### 1. Login ke Aplikasi
-- Buka `http://localhost:8000/login`
-- Gunakan kredensial yang telah dibuat (atau via Seeder). 
-  - *Admin* memiliki akses penuh ke Dashboard, Manajemen Produk, Laporan, dan User.
-  - *Kasir* umumnya hanya memiliki akses ke menu POS Kasir dan riwayat transaksinya.
-
-### 2. Melakukan Transaksi (POS Kasir)
-1. Navigasi ke menu **POS Kasir** di *sidebar*.
-2. Gunakan kolom pencarian untuk mencari produk (bisa dengan mengetikkan nama produk, atau menggunakan *barcode scanner* jika sudah diintegrasikan).
-3. Klik produk yang muncul untuk memasukkannya ke dalam keranjang (Cart).
-4. Sesuaikan *Quantity* (jumlah) barang di keranjang jika diperlukan. Subtotal akan dikalkulasi secara otomatis berkat Livewire.
-5. Masukkan metode pembayaran, lalu klik tombol **Proses Pembayaran** (atau tombol *Checkout*) untuk menyelesaikan transaksi.
-
----
-
-## 🏗️ Standar Kode & Arsitektur
-
-- **Blade Components:** Proyek ini memecah antarmuka (UI) menjadi beberapa *Blade Components* yang *reusable* (seperti `sidebar`, `header`, `card`), sehingga kode HTML lebih bersih dan mudah dirawat.
-- **Livewire Reaktivitas:** Halaman **POS Kasir** tidak menggunakan framework JavaScript terpisah (seperti Vue/React), melainkan bergantung pada **Laravel Livewire**. Ini memungkinkan interaksi dinamis (seperti update *cart*, pencarian produk, dan hitung total) langsung ditangani oleh logika PHP di sisi *backend* tanpa perlu *page reload*, memberikan rasa aplikasi SPA (Single Page Application).
-- **Tailwind CSS Utility-First:** Seluruh komponen UI didesain khusus dengan kelas utilitas Tailwind CSS, menerapkan konsep desain responsif serta menggunakan pola warna *Light Mode* (dominasi putih dan biru profesional) untuk estetika aplikasi yang modern.
-
----
-*Dibuat untuk sistem POS Tiysa POS. Silakan modifikasi dokumentasi ini menyesuaikan perkembangan proyek Anda.*
+<div align="center">
+  <p>Dibuat dengan 💜 untuk efisiensi transaksi kelas dunia.</p>
+</div>

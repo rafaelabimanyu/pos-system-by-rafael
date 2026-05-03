@@ -8,7 +8,7 @@
         <h1 class="text-2xl md:text-3xl font-bold text-slate-900">Dashboard</h1>
         <div class="mt-2 text-slate-500">
             <p class="font-semibold text-slate-800">{{ \App\Models\Setting::get('store_name', 'Tiysa POS') }}</p>
-            <p class="text-sm mt-0.5"><i data-lucide="map-pin" class="w-3.5 h-3.5 inline-block mr-1 text-slate-400"></i>{{ \App\Models\Setting::get('store_address', 'Jl. Contoh No. 123, Jakarta') }}</p>
+            <p class="text-sm mt-0.5"><i data-lucide="map-pin" class="w-3.5 h-3.5 inline-block mr-1 text-slate-500"></i>{{ \App\Models\Setting::get('store_address', 'Jl. Contoh No. 123, Jakarta') }}</p>
         </div>
     </div>
     <div class="flex items-center gap-2">
@@ -40,7 +40,7 @@
         <div>
             <x-card title="Produk Terlaris" subtitle="Bulan ini" icon="crown">
                 @if($topProducts->isEmpty())
-                    <div class="flex flex-col items-center py-8 text-slate-400">
+                    <div class="flex flex-col items-center py-8 text-slate-500">
                         <i data-lucide="package-open" class="w-10 h-10 mb-2 opacity-30"></i>
                         <p class="text-sm">Belum ada data penjualan</p>
                     </div>
@@ -100,7 +100,7 @@
                     @empty
                         <tr>
                             <td colspan="6" class="px-5 py-12 text-center">
-                                <div class="flex flex-col items-center text-slate-400">
+                                <div class="flex flex-col items-center text-slate-500">
                                     <i data-lucide="receipt" class="w-12 h-12 mb-3 opacity-30"></i>
                                     <p class="font-medium text-slate-600">Belum ada transaksi</p>
                                     <p class="text-xs mt-1 text-slate-500">Mulai transaksi pertama di POS</p>

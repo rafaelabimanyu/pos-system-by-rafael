@@ -18,14 +18,14 @@
 ])
 
 @php
-    $baseClasses = 'inline-flex items-center justify-center gap-2 font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark-800 cursor-pointer';
+    $baseClasses = 'inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white cursor-pointer';
 
     $variants = [
-        'primary'   => 'bg-brand-600 hover:bg-brand-500 text-white focus:ring-brand-500 hover:shadow-glow',
-        'secondary' => 'bg-dark-600 hover:bg-dark-500 text-slate-300 hover:text-white border border-dark-500 focus:ring-dark-400',
-        'danger'    => 'bg-red-600/10 hover:bg-red-600/20 text-red-400 border border-red-500/20 focus:ring-red-500',
-        'ghost'     => 'hover:bg-dark-600 text-slate-400 hover:text-white focus:ring-dark-400',
-        'success'   => 'bg-emerald-600 hover:bg-emerald-500 text-white focus:ring-emerald-500',
+        'primary'   => 'bg-blue-600 hover:bg-blue-700 text-white focus:ring-blue-500 shadow-sm',
+        'secondary' => 'bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 shadow-sm focus:ring-slate-300',
+        'danger'    => 'bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 focus:ring-red-500',
+        'ghost'     => 'hover:bg-slate-100 text-slate-600 hover:text-slate-900 focus:ring-slate-300',
+        'success'   => 'bg-emerald-600 hover:bg-emerald-700 text-white focus:ring-emerald-500 shadow-sm',
     ];
 
     $sizes = [

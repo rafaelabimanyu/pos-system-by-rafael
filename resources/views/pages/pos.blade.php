@@ -66,12 +66,12 @@
                     <i data-lucide="user-check" class="w-4 h-4 text-emerald-600"></i>
                 </div>
                 <div>
-                    <p class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Kasir Aktif</p>
+                    <p class="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">Kasir Aktif</p>
                     <p class="text-sm font-bold text-slate-800">{{ auth()->user()->name }}</p>
                 </div>
                 <div class="w-px h-8 bg-slate-200 mx-2"></div>
                 <div>
-                    <p class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Waktu Mulai</p>
+                    <p class="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">Waktu Mulai</p>
                     <p class="text-sm font-bold text-emerald-600" x-text="activeShift ? formatTime(activeShift.started_at) : ''"></p>
                 </div>
             </div>
@@ -82,7 +82,7 @@
 
         <div class="flex flex-col sm:flex-row gap-3 mb-5">
             <div class="flex-1 flex items-center gap-2 bg-white rounded-xl px-4 py-3 border border-slate-200 focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition-all shadow-sm">
-                <i data-lucide="search" class="w-4 h-4 text-slate-400"></i>
+                <i data-lucide="search" class="w-4 h-4 text-slate-500"></i>
                 <input x-model="search" type="text" placeholder="Cari produk..." class="bg-transparent text-sm text-slate-800 placeholder-slate-400 outline-none w-full">
             </div>
             <div class="flex gap-2 flex-wrap">
@@ -102,7 +102,7 @@
                             <img :src="'/storage/'+p.gambar" class="w-14 h-14 rounded-xl object-cover mb-3 group-hover:scale-105 transition-transform">
                         </template>
                         <template x-if="!p.gambar">
-                            <div class="w-14 h-14 bg-slate-100 rounded-xl flex items-center justify-center text-2xl mb-3 group-hover:scale-105 transition-transform"><i data-lucide="package" class="w-6 h-6 text-slate-400"></i></div>
+                            <div class="w-14 h-14 bg-slate-100 rounded-xl flex items-center justify-center text-2xl mb-3 group-hover:scale-105 transition-transform"><i data-lucide="package" class="w-6 h-6 text-slate-500"></i></div>
                         </template>
                         <h3 class="text-sm font-bold text-slate-800 truncate group-hover:text-blue-600 transition-colors" x-text="p.name"></h3>
                         <p class="text-xs text-slate-500 mt-0.5" x-text="p.category"></p>
@@ -113,7 +113,7 @@
                     </button>
                 </template>
             </div>
-            <div x-show="filteredProducts.length===0" class="flex flex-col items-center justify-center py-20 text-slate-400">
+            <div x-show="filteredProducts.length===0" class="flex flex-col items-center justify-center py-20 text-slate-500">
                 <i data-lucide="search-x" class="w-12 h-12 mb-3 opacity-40"></i>
                 <p class="text-sm">Produk tidak ditemukan</p>
             </div>
@@ -132,16 +132,16 @@
         </div>
         <div class="flex-1 overflow-y-auto p-4 space-y-3">
             <template x-if="cart.length===0">
-                <div class="flex flex-col items-center justify-center h-full text-slate-400 py-12">
+                <div class="flex flex-col items-center justify-center h-full text-slate-500 py-12">
                     <i data-lucide="shopping-bag" class="w-12 h-12 mb-3 opacity-30"></i>
                     <p class="text-sm font-medium text-slate-500">Keranjang kosong</p>
-                    <p class="text-xs mt-1 text-slate-400">Klik produk untuk menambahkan</p>
+                    <p class="text-xs mt-1 text-slate-500">Klik produk untuk menambahkan</p>
                 </div>
             </template>
             <template x-for="item in cart" :key="item.id">
                 <div class="flex items-center gap-3 p-3 bg-slate-50 border border-slate-100 rounded-xl group cart-item-enter hover:bg-slate-100 hover:border-slate-200 transition-colors">
                     <div class="w-10 h-10 bg-white border border-slate-200 rounded-lg flex items-center justify-center shrink-0 shadow-sm">
-                        <i data-lucide="package" class="w-4 h-4 text-slate-400"></i>
+                        <i data-lucide="package" class="w-4 h-4 text-slate-500"></i>
                     </div>
                     <div class="flex-1 min-w-0">
                         <p class="text-sm font-bold text-slate-800 truncate" x-text="item.name"></p>
@@ -167,7 +167,7 @@
             <div class="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
                 <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Pembayaran (Cash)</label>
                 <div class="flex items-center gap-2 bg-white rounded-xl px-3 py-2.5 border border-slate-200 focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition-all shadow-sm">
-                    <span class="text-sm text-slate-400 font-medium">Rp</span>
+                    <span class="text-sm text-slate-500 font-medium">Rp</span>
                     <input x-model.number="payAmount" type="number" placeholder="0" min="0" class="bg-transparent text-lg font-bold text-slate-900 outline-none w-full payment-input">
                 </div>
                 <div class="grid grid-cols-4 gap-2">
@@ -183,7 +183,7 @@
             
             <div class="grid grid-cols-2 gap-3 mt-4">
                 <button @click="holdTransaction()" class="flex items-center justify-center gap-2 px-4 py-3 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-sm rounded-xl text-sm font-bold transition-all cursor-pointer"><i data-lucide="pause-circle" class="w-4 h-4"></i> Hold</button>
-                <button @click="processPayment()" :disabled="!canPay || processing" class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-bold shadow-sm transition-all cursor-pointer" :class="canPay&&!processing?'bg-blue-600 hover:bg-blue-700 text-white':'bg-slate-200 text-slate-400 cursor-not-allowed border border-slate-300'">
+                <button @click="processPayment()" :disabled="!canPay || processing" class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-bold shadow-sm transition-all cursor-pointer" :class="canPay&&!processing?'bg-blue-600 hover:bg-blue-700 text-white':'bg-slate-200 text-slate-500 cursor-not-allowed border border-slate-300'">
                     <i data-lucide="check-circle" class="w-4 h-4"></i> <span x-text="processing?'Memproses...':'Bayar'"></span>
                 </button>
             </div>

@@ -5,7 +5,7 @@
 @section('page-header')
 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
     <div>
-        <h1 class="text-2xl md:text-3xl font-bold text-white">Laporan Penjualan</h1>
+        <h1 class="text-2xl md:text-3xl font-bold text-slate-900">Laporan Penjualan</h1>
         <p class="text-slate-500 mt-1">Analisis penjualan dan performa bisnis Anda.</p>
     </div>
     <div class="flex items-center gap-2">
@@ -21,14 +21,14 @@
         <x-card>
             <div class="flex flex-col sm:flex-row items-end gap-4">
                 <div class="flex-1">
-                    <label class="block text-sm font-medium text-slate-300 mb-1.5">Tanggal Mulai</label>
+                    <label class="block text-sm font-medium text-slate-700 mb-1.5">Tanggal Mulai</label>
                     <input type="date" name="start_date" value="{{ $startDate }}"
-                        class="w-full bg-dark-800 border border-dark-600/50 rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-brand-500/50 transition-all">
+                        class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all">
                 </div>
                 <div class="flex-1">
-                    <label class="block text-sm font-medium text-slate-300 mb-1.5">Tanggal Akhir</label>
+                    <label class="block text-sm font-medium text-slate-700 mb-1.5">Tanggal Akhir</label>
                     <input type="date" name="end_date" value="{{ $endDate }}"
-                        class="w-full bg-dark-800 border border-dark-600/50 rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-brand-500/50 transition-all">
+                        class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all">
                 </div>
                 <x-button variant="primary" icon="search" type="submit">Filter</x-button>
             </div>
@@ -61,30 +61,30 @@
     <x-card title="Riwayat Transaksi" icon="list" :noPadding="true">
         <x-table :headers="['ID Transaksi', 'Tanggal', 'Detail Produk', 'Qty', 'Total', 'Bayar', 'Kembalian']">
             @forelse($transactions as $trx)
-                <tr class="hover:bg-dark-600/30 transition-colors">
-                    <td class="px-5 py-3.5 text-sm font-mono font-medium text-brand-400">
+                <tr class="hover:bg-slate-50 transition-colors">
+                    <td class="px-5 py-3.5 text-sm font-mono font-medium text-blue-600">
                         #TRX-{{ str_pad($trx->id, 4, '0', STR_PAD_LEFT) }}
                     </td>
-                    <td class="px-5 py-3.5 text-sm text-slate-400">
+                    <td class="px-5 py-3.5 text-sm text-slate-500">
                         {{ $trx->tanggal->format('d M Y') }}
                     </td>
                     <td class="px-5 py-3.5">
                         <div class="space-y-0.5">
                             @foreach($trx->items as $item)
-                                <p class="text-xs text-slate-400">
-                                    <span class="text-slate-300">{{ $item->product->nama ?? '—' }}</span>
+                                <p class="text-xs text-slate-500">
+                                    <span class="text-slate-700">{{ $item->product->nama ?? '—' }}</span>
                                     <span class="text-slate-500">× {{ $item->qty }}</span>
                                 </p>
                             @endforeach
                         </div>
                     </td>
-                    <td class="px-5 py-3.5 text-sm text-slate-400">
+                    <td class="px-5 py-3.5 text-sm text-slate-500">
                         {{ $trx->items->sum('qty') }} item
                     </td>
-                    <td class="px-5 py-3.5 text-sm font-medium text-white">
+                    <td class="px-5 py-3.5 text-sm font-medium text-slate-800">
                         Rp {{ number_format($trx->total, 0, ',', '.') }}
                     </td>
-                    <td class="px-5 py-3.5 text-sm text-slate-300">
+                    <td class="px-5 py-3.5 text-sm text-slate-700">
                         Rp {{ number_format($trx->bayar, 0, ',', '.') }}
                     </td>
                     <td class="px-5 py-3.5 text-sm text-emerald-400">
@@ -105,7 +105,7 @@
         </x-table>
 
         @if($transactions->hasPages())
-            <div class="px-5 py-4 border-t border-dark-600/40">
+            <div class="px-5 py-4 border-t border-slate-200">
                 {{ $transactions->links('vendor.pagination.tailwind-dark') }}
             </div>
         @endif

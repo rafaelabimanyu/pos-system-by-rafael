@@ -84,6 +84,7 @@
             lucide.createIcons();
         });
     </script>
+    <script src="./js/spa.js"></script>
 
     @stack('scripts')
 </body>

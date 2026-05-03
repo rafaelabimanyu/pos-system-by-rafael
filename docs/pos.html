@@ -1,17 +1,195 @@
-@extends('layouts.master')
-@section('title', 'POS Kasir')
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="">
+    <meta name="description" content="Tiysa POS — Sistem Kasir Modern untuk Bisnis Anda">
 
-@section('content')
-<div x-data="posApp()" x-init="init()" class="flex flex-col lg:flex-row gap-4 h-[calc(100vh-8rem)]">
+    <title>POS Kasir — Tiysa POS</title>
 
-    {{-- Toast --}}
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <link rel="preload" as="style" href="../build/assets/app-BetaeEYM.css" /><link rel="modulepreload" as="script" href="../build/assets/app-HIsboAo-.js" /><link rel="stylesheet" href="../build/assets/app-BetaeEYM.css" /><script type="module" src="../build/assets/app-HIsboAo-.js"></script>
+    </head>
+<body class="antialiased min-h-screen">
+    <div class="flex min-h-screen">
+        
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-40 hidden lg:hidden backdrop-blur-sm"></div>
+
+        
+        <aside id="sidebar" class="fixed top-0 left-0 z-50 w-64 h-screen bg-white border-r border-slate-200 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col shadow-sm">
+
+    
+    <div class="flex items-center gap-3 px-5 h-16 border-b border-slate-200 shrink-0 bg-white">
+        <div class="w-9 h-9 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-sm">
+            <i data-lucide="shopping-bag" class="w-5 h-5 text-white"></i>
+        </div>
+        <div>
+            <h1 class="text-lg font-bold text-slate-900 tracking-tight">Tiysa POS</h1>
+            <p class="text-[10px] text-slate-500 -mt-0.5 font-medium uppercase tracking-wider">Point of Sale</p>
+        </div>
+    </div>
+
+    
+    <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto bg-white">
+        
+        <p class="px-3 mb-2 text-[11px] font-semibold text-slate-500 uppercase tracking-widest">Menu Utama</p>
+
+        <a href="dashboard.html"
+           class="admin-only sidebar-link group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900">
+            <i data-lucide="layout-dashboard" class="sidebar-icon w-5 h-5 text-slate-400 group-hover:text-blue-500 transition-colors"></i>
+            <span class="sidebar-text transition-colors">Dashboard</span>
+        </a>
+
+        <a href="pos.html"
+           class="sidebar-link group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900">
+            <i data-lucide="monitor" class="sidebar-icon w-5 h-5 text-slate-400 group-hover:text-blue-500 transition-colors"></i>
+            <span class="sidebar-text transition-colors">POS Kasir</span>
+            <span class="ml-auto px-2 py-0.5 text-[10px] font-bold bg-blue-100 text-blue-600 rounded-full">LIVE</span>
+        </a>
+
+        <a href="produk.html"
+           class="admin-only sidebar-link group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900">
+            <i data-lucide="package" class="sidebar-icon w-5 h-5 text-slate-400 group-hover:text-blue-500 transition-colors"></i>
+            <span class="sidebar-text transition-colors">Produk</span>
+        </a>
+
+        
+        <p class="admin-only px-3 mt-6 mb-2 text-[11px] font-semibold text-slate-500 uppercase tracking-widest">Laporan & Data</p>
+
+        <a href="laporan.html"
+           class="admin-only sidebar-link group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900">
+            <i data-lucide="bar-chart-3" class="sidebar-icon w-5 h-5 text-slate-400 group-hover:text-blue-500 transition-colors"></i>
+            <span class="sidebar-text transition-colors">Laporan</span>
+        </a>
+
+        
+        <p class="admin-only px-3 mt-6 mb-2 text-[11px] font-semibold text-slate-500 uppercase tracking-widest">Sistem</p>
+
+        <a href="users.html"
+           class="admin-only sidebar-link group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900">
+            <i data-lucide="users" class="sidebar-icon w-5 h-5 text-slate-400 group-hover:text-blue-500 transition-colors"></i>
+            <span class="sidebar-text transition-colors">User Management</span>
+        </a>
+
+        <a href="pengaturan.html"
+           class="admin-only sidebar-link group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900">
+            <i data-lucide="settings" class="sidebar-icon w-5 h-5 text-slate-400 group-hover:text-blue-500 transition-colors"></i>
+            <span class="sidebar-text transition-colors">Pengaturan</span>
+        </a>
+    </nav>
+
+    
+    <div class="p-3 border-t border-slate-200 shrink-0 bg-white">
+        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+            <div class="flex items-center gap-2 mb-1">
+                <div class="w-2 h-2 bg-emerald-500 rounded-full pulse-dot"></div>
+                <span class="text-xs font-medium text-emerald-600">Online</span>
+            </div>
+            <p class="text-xs text-slate-800 font-bold user-name-display">Loading...</p>
+            <p class="text-[10px] text-slate-500 capitalize user-role-display">...</p>
+        </div>
+    </div>
+</aside>
+
+        
+        <div class="flex-1 flex flex-col min-h-screen lg:ml-64">
+            
+            <header class="sticky top-0 z-30 h-16 bg-white border-b border-slate-200 shrink-0 shadow-sm">
+    <div class="flex items-center justify-between h-full px-4 md:px-6">
+        
+        <div class="flex items-center gap-3">
+            <button id="sidebar-toggle" class="lg:hidden p-2 rounded-xl text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+                <i data-lucide="menu" class="w-5 h-5"></i>
+            </button>
+
+            <div class="hidden md:flex items-center gap-2 bg-slate-50 rounded-xl px-3 py-2 border border-slate-200 focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition-all w-72">
+                <i data-lucide="search" class="w-4 h-4 text-slate-400"></i>
+                <input type="text" placeholder="Cari produk, transaksi..." class="bg-transparent text-sm text-slate-800 placeholder-slate-400 outline-none w-full">
+                <kbd class="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-medium text-slate-500 bg-white rounded-md border border-slate-200 shadow-sm">⌘K</kbd>
+            </div>
+        </div>
+
+        
+        <div class="flex items-center gap-2">
+            
+            <a href="pos.html" class="hidden sm:flex items-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-xl transition-all shadow-sm">
+                <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                <span>Transaksi Baru</span>
+            </a>
+
+            <div class="w-px h-6 bg-slate-200 mx-1"></div>
+
+            
+            <div class="relative">
+                <button id="user-menu-btn" class="flex items-center gap-3 px-2 py-1.5 rounded-xl hover:bg-slate-50 transition-colors">
+                    <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center text-white text-sm font-bold shadow-sm">
+                        U
+                    </div>
+                    <div class="hidden md:block text-left">
+                        <p class="text-sm font-bold text-slate-800 leading-tight user-name-display">Loading...</p>
+                        <p class="text-[11px] text-slate-500 leading-tight capitalize user-role-display">...</p>
+                    </div>
+                    <i data-lucide="chevron-down" class="hidden md:block w-4 h-4 text-slate-400"></i>
+                </button>
+
+                
+                <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-56 bg-white border border-slate-200 rounded-2xl shadow-lg overflow-hidden dropdown-enter">
+                    <div class="px-4 py-3 border-b border-slate-100 bg-slate-50">
+                        <p class="text-sm font-bold text-slate-800 user-name-display">Loading...</p>
+                        <p class="text-xs text-slate-500 user-email-display">...</p>
+                    </div>
+                    <div class="py-1.5">
+                        <a href="#" class="flex items-center gap-3 px-4 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors">
+                            <i data-lucide="user" class="w-4 h-4"></i>
+                            <span>Profil Saya</span>
+                        </a>
+                        <a href="pengaturan.html" class="admin-only flex items-center gap-3 px-4 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors">
+                            <i data-lucide="settings" class="w-4 h-4"></i>
+                            <span>Pengaturan</span>
+                        </a>
+                    </div>
+                    <div class="border-t border-slate-100 py-1.5">
+                        <button type="button" class="btn-logout w-full flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 transition-colors cursor-pointer font-medium">
+                            <i data-lucide="log-out" class="w-4 h-4"></i>
+                            <span>Keluar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+            
+            <main class="flex-1 p-4 md:p-6 lg:p-8">
+                
+                
+                
+                
+                
+                
+                <div class="animate-fade-in">
+                    <div x-data="posApp()" x-init="init()" class="flex flex-col lg:flex-row gap-4 h-[calc(100vh-8rem)]">
+
+    
     <div x-show="toast.show" x-transition:enter="toast-enter" x-transition:leave="toast-leave"
          class="fixed top-20 right-6 z-50 px-4 py-3 rounded-xl shadow-md flex items-center gap-3 text-sm font-medium"
          :class="toast.type==='success'?'bg-emerald-50 border border-emerald-200 text-emerald-700':toast.type==='warning'?'bg-amber-50 border border-amber-200 text-amber-700':'bg-red-50 border border-red-200 text-red-700'">
         <span x-text="toast.message"></span>
     </div>
 
-    {{-- Mulai Shift Overlay --}}
+    
     <div x-show="!activeShift" x-cloak class="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/40 backdrop-blur-sm">
         <div class="bg-white border border-slate-200 rounded-2xl p-6 w-full max-w-md shadow-lg text-center">
             <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -35,7 +213,7 @@
         </div>
     </div>
 
-    {{-- Tutup Shift Modal --}}
+    
     <div x-show="showCloseShiftModal" x-cloak class="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/40 backdrop-blur-sm">
         <div class="bg-white border border-slate-200 rounded-2xl p-6 w-full max-w-md shadow-lg">
             <h2 class="text-lg font-bold text-slate-800 mb-4">Tutup Shift</h2>
@@ -57,9 +235,9 @@
         </div>
     </div>
 
-    {{-- LEFT: Products --}}
+    
     <div class="flex-1 flex flex-col min-h-0 bg-slate-50 rounded-2xl p-4 md:p-6 border border-slate-200 shadow-sm">
-        {{-- Shift Info Bar --}}
+        
         <div x-show="activeShift" class="flex items-center justify-between bg-white border border-slate-200 rounded-xl p-3 mb-5 shadow-sm">
             <div class="flex items-center gap-3">
                 <div class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center border border-emerald-100">
@@ -120,7 +298,7 @@
         </div>
     </div>
 
-    {{-- RIGHT: Cart --}}
+    
     <div class="w-full lg:w-[400px] shrink-0 flex flex-col bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
         <div class="flex items-center justify-between px-5 py-4 border-b border-slate-100 bg-white">
             <div class="flex items-center gap-2">
@@ -189,7 +367,7 @@
             </div>
         </div>
         
-        {{-- Held Transactions Area --}}
+        
         <div x-show="heldTransactions.length>0" class="border-t border-slate-200 px-5 py-4 bg-slate-50">
             <p class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-3">Ditahan (<span x-text="heldTransactions.length"></span>)</p>
             <div class="space-y-2 max-h-32 overflow-y-auto pr-1">
@@ -203,34 +381,47 @@
         </div>
     </div>
 </div>
-@endsection
+                </div>
+            </main>
 
-@push('scripts')
-<script>
+            
+            <footer class="px-6 py-4 border-t border-dark-700/50">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-2 text-sm text-slate-500">
+                    <p>&copy; 2026 Tiysa POS. All rights reserved.</p>
+                    <p class="flex items-center gap-1.5">
+                        Made with <span class="text-red-400">♥</span> for your business
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+    <script src="./js/spa.js"></script>
+
+    <script>
 function posApp() {
     return {
         search: '', activeCategory: 'Semua', cart: [], payAmount: 0,
         heldTransactions: [], processing: false,
         toast: { show: false, message: '', type: 'success' },
-        activeShift: @json($activeShift),
+        activeShift: {"id":1},
         openingCash: 0, closingCash: 0, showCloseShiftModal: false,
 
         // Products from database
-        @php
-            $mappedProducts = $products->map(fn($p) => [
-                'id' => $p->id, 'name' => $p->nama, 'price' => $p->harga,
-                'category' => $p->category->nama, 'stok' => $p->stok,
-                'gambar' => $p->gambar,
-            ]);
-        @endphp
-        products: @json($mappedProducts),
+                products: [],
 
-        dbCategories: @json($categories),
+        dbCategories: [],
 
         // Settings
-        taxEnabled: {{ \App\Models\Setting::get('tax_enabled', '0') == '1' ? 'true' : 'false' }},
-        taxPercentage: {{ (float) \App\Models\Setting::get('tax_percentage', '11') }},
-        discountGlobal: {{ (float) \App\Models\Setting::get('discount_global', '0') }},
+        taxEnabled: false,
+        taxPercentage: 11,
+        discountGlobal: 0,
 
         get allCategories() { return ['Semua', ...this.dbCategories]; },
 
@@ -297,7 +488,7 @@ function posApp() {
         async startShift() {
             this.processing = true;
             try {
-                const res = await fetch('{{ route("shift.start") }}', {
+                const res = await fetch('./shift/start', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content },
                     body: JSON.stringify({ opening_cash: this.openingCash })
@@ -319,7 +510,7 @@ function posApp() {
         async closeShift() {
             this.processing = true;
             try {
-                const res = await fetch('{{ route("shift.close") }}', {
+                const res = await fetch('./shift/close', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content },
                     body: JSON.stringify({ closing_cash: this.closingCash, notes: '' })
@@ -346,7 +537,7 @@ function posApp() {
             if (!this.canPay || this.processing) return;
             this.processing = true;
             try {
-                const res = await fetch('{{ route("pos.checkout") }}', {
+                const res = await fetch('./pos/checkout', {
                     method: 'POST',
                     headers: { 
                         'Content-Type': 'application/json', 
@@ -386,4 +577,5 @@ function posApp() {
     };
 }
 </script>
-@endpush
+</body>
+</html>

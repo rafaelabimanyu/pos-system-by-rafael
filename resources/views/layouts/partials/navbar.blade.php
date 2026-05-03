@@ -17,7 +17,7 @@
         {{-- Right: Actions --}}
         <div class="flex items-center gap-2">
             {{-- Quick POS --}}
-            <a href="{{ route('pos') }}" class="hidden sm:flex items-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-xl transition-all shadow-sm">
+            <a href="pos.html" class="hidden sm:flex items-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-xl transition-all shadow-sm">
                 <i data-lucide="plus-circle" class="w-4 h-4"></i>
                 <span>Transaksi Baru</span>
             </a>
@@ -27,12 +27,12 @@
             {{-- User Menu --}}
             <div class="relative">
                 <button id="user-menu-btn" class="flex items-center gap-3 px-2 py-1.5 rounded-xl hover:bg-slate-50 transition-colors">
-                    <div class="w-8 h-8 bg-gradient-to-br {{ auth()->user()->isAdmin() ? 'from-blue-600 to-indigo-600' : 'from-emerald-500 to-teal-600' }} rounded-lg flex items-center justify-center text-white text-sm font-bold shadow-sm">
-                        {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                    <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center text-white text-sm font-bold shadow-sm">
+                        U
                     </div>
                     <div class="hidden md:block text-left">
-                        <p class="text-sm font-bold text-slate-800 leading-tight">{{ auth()->user()->name }}</p>
-                        <p class="text-[11px] text-slate-500 leading-tight capitalize">{{ auth()->user()->role }}</p>
+                        <p class="text-sm font-bold text-slate-800 leading-tight user-name-display">Loading...</p>
+                        <p class="text-[11px] text-slate-500 leading-tight capitalize user-role-display">...</p>
                     </div>
                     <i data-lucide="chevron-down" class="hidden md:block w-4 h-4 text-slate-400"></i>
                 </button>
@@ -40,29 +40,24 @@
                 {{-- User Dropdown --}}
                 <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-56 bg-white border border-slate-200 rounded-2xl shadow-lg overflow-hidden dropdown-enter">
                     <div class="px-4 py-3 border-b border-slate-100 bg-slate-50">
-                        <p class="text-sm font-bold text-slate-800">{{ auth()->user()->name }}</p>
-                        <p class="text-xs text-slate-500">{{ auth()->user()->email }}</p>
+                        <p class="text-sm font-bold text-slate-800 user-name-display">Loading...</p>
+                        <p class="text-xs text-slate-500 user-email-display">...</p>
                     </div>
                     <div class="py-1.5">
                         <a href="#" class="flex items-center gap-3 px-4 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors">
                             <i data-lucide="user" class="w-4 h-4"></i>
                             <span>Profil Saya</span>
                         </a>
-                        @if(auth()->user()->isAdmin())
-                        <a href="{{ route('pengaturan') }}" class="flex items-center gap-3 px-4 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors">
+                        <a href="pengaturan.html" class="admin-only flex items-center gap-3 px-4 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors">
                             <i data-lucide="settings" class="w-4 h-4"></i>
                             <span>Pengaturan</span>
                         </a>
-                        @endif
                     </div>
                     <div class="border-t border-slate-100 py-1.5">
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="w-full flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 transition-colors cursor-pointer font-medium">
-                                <i data-lucide="log-out" class="w-4 h-4"></i>
-                                <span>Keluar</span>
-                            </button>
-                        </form>
+                        <button type="button" class="btn-logout w-full flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 transition-colors cursor-pointer font-medium">
+                            <i data-lucide="log-out" class="w-4 h-4"></i>
+                            <span>Keluar</span>
+                        </button>
                     </div>
                 </div>
             </div>

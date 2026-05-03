@@ -14,10 +14,10 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
     <!-- Jalur Aset diperbaiki menjadi ./ agar terbaca di root GitHub Pages -->
-    <link rel="preload" as="style" href="./build/assets/app-Ca3Z8Fs1.css" />
-    <link rel="modulepreload" as="script" href="./build/assets/app-HIsboAo-.js" />
-    <link rel="stylesheet" href="./build/assets/app-Ca3Z8Fs1.css" />
-    <script type="module" src="./build/assets/app-HIsboAo-.js"></script>
+    <link rel="preload" as="style" href="../build/assets/app-Ca3Z8Fs1.css" />
+    <link rel="modulepreload" as="script" href="../build/assets/app-HIsboAo-.js" />
+    <link rel="stylesheet" href="../build/assets/app-Ca3Z8Fs1.css" />
+    <script type="module" src="../build/assets/app-HIsboAo-.js"></script>
 
     <!-- Script Tailwind Play CDN sebagai fallback jika build lokal gagal termuat -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -173,12 +173,23 @@
                         
                         // Simulasi jeda waktu jaringan (1 detik)
                         setTimeout(() => {
-                            alert('Login Berhasil! (Simulasi Statis)\n\nSelamat datang, ' + email);
-                            // window.location.href = 'dashboard.html'; // Aktifkan jika ada halaman selanjutnya
+                            // Tentukan role berdasarkan email
+                            const userRole = email.includes('admin') ? 'admin' : 'kasir';
+                            const userName = email.split('@')[0];
                             
-                            // Kembalikan tombol ke semula
-                            btn.innerHTML = originalText;
-                            lucide.createIcons();
+                            // Simpan sesi ke localStorage
+                            localStorage.setItem('tiysa_session', JSON.stringify({
+                                email: email,
+                                role: userRole,
+                                name: userName.charAt(0).toUpperCase() + userName.slice(1)
+                            }));
+                            
+                            // Redirect berdasarkan role
+                            if (userRole === 'admin') {
+                                window.location.href = 'dashboard.html';
+                            } else {
+                                window.location.href = 'pos.html';
+                            }
                         }, 1000);
                     }
                 });

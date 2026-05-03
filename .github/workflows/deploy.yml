@@ -3,16 +3,22 @@ name: Deploy Static Login Page to GitHub Pages
 on:
   push:
     branches: ["main"]
-  # Memungkinkan trigger manual dari tab Actions
   workflow_dispatch:
 
+# Set permissions for GitHub Pages deployment
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  build-and-export:
+  build:
     runs-on: ubuntu-latest
-    
     steps:
       - name: 📦 Checkout repository
         uses: actions/checkout@v4
@@ -33,52 +39,43 @@ jobs:
           cp .env.example .env
           touch database/database.sqlite
 
-      - name: 📥 Install PHP Dependencies (Composer)
-        run: composer install --optimize-autoloader --no-dev --no-interaction --prefer-dist
-
+      - name: 📥 Install Dependencies
+        run: |
+          composer install --optimize-autoloader --no-dev --no-interaction --prefer-dist
+          npm ci
+          
       - name: 🔑 Generate App Key
         run: php artisan key:generate
 
-      - name: 📦 Install NPM Dependencies & Build Vite
-        run: |
-          npm ci
-          npm run build
-          
+      - name: 📦 Build Vite Assets
+        run: npm run build
+
       - name: 🛠️ Export Static HTML
-        env:
-          # Pastikan path absolut ke GitHub Pages agar aset Vite ter-load dengan benar
-          ASSET_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
-          APP_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
         run: |
-          # 1. Siapkan folder dist
           mkdir -p dist
           
-          # 2. Salin semua aset publik (termasuk folder build/ dari Vite dan favicon)
+          # Salin semua hasil build Vite dan aset public
           cp -R public/* dist/
-          # Hapus index.php bawaan Laravel karena kita akan menggantinya dengan HTML statis
           rm -f dist/index.php
           
-          # 3. Jalankan server Laravel di background
-          php artisan serve --host=127.0.0.1 --port=8000 &
-          SERVER_PID=$!
+          # Render view login Laravel secara langsung menjadi file index.html statis
+          php artisan tinker --execute="file_put_contents('dist/index.html', view('auth.login')->render());"
           
-          # Tunggu server siap
-          sleep 3
-          
-          # 4. Unduh render HTML dari route /login dan simpan sebagai index.html utama
-          wget -q -O dist/index.html http://127.0.0.1:8000/login
-          
-          # 5. Fix fallback: Ubah /build/ menjadi ./build/ agar jalan meskipun ASSET_URL tidak sempurna
+          # Sangat Penting: Ubah path /build/ menjadi ./build/ agar CSS/JS tetap jalan di subfolder GitHub Pages
           sed -i 's|/build/|./build/|g' dist/index.html
-          
-          # 6. Matikan server
-          kill $SERVER_PID
 
-      - name: 🚀 Deploy to GitHub Pages (gh-pages branch)
-        uses: peaceiris/actions-gh-pages@v3
+      - name: 📤 Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          publish_branch: gh-pages
-          commit_message: "deploy: update static frontend to GitHub Pages"
-          force_orphan: true
+          path: ./dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

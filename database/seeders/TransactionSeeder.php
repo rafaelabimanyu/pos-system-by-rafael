@@ -11,15 +11,18 @@ class TransactionSeeder extends Seeder
     public function run(): void
     {
         $products = Product::all();
-        if ($products->isEmpty()) return;
+        $kasirUsers = \App\Models\User::where('role', 'kasir')->get();
+        $paymentMethods = ['cash', 'qris', 'debit'];
+
+        if ($products->isEmpty() || $kasirUsers->isEmpty()) return;
 
         // Generate 7 hari terakhir data transaksi
         for ($day = 6; $day >= 0; $day--) {
-            $date = now()->subDays($day)->toDateString();
+            $date = now()->subDays($day);
             $txCount = rand(5, 15);
 
             for ($t = 0; $t < $txCount; $t++) {
-                $itemCount = rand(1, 4);
+                $itemCount = rand(1, 8);
                 $selectedProducts = $products->random($itemCount);
                 $total = 0;
                 $items = [];
@@ -35,13 +38,21 @@ class TransactionSeeder extends Seeder
                 }
 
                 $bayar = (int) (ceil($total / 5000) * 5000);
+                
+                $randomHour = rand(8, 22);
+                $randomMinute = rand(0, 59);
+                $randomSecond = rand(0, 59);
+                $transactionDate = $date->copy()->setTime($randomHour, $randomMinute, $randomSecond);
 
                 $transaction = Transaction::create([
-                    'total'     => $total,
-                    'bayar'     => $bayar,
-                    'kembalian' => $bayar - $total,
-                    'tanggal'   => $date,
-                    'user_id'   => null,
+                    'total'          => $total,
+                    'bayar'          => $bayar,
+                    'kembalian'      => $bayar - $total,
+                    'tanggal'        => $transactionDate->toDateString(),
+                    'payment_method' => $paymentMethods[array_rand($paymentMethods)],
+                    'user_id'        => $kasirUsers->random()->id,
+                    'created_at'     => $transactionDate,
+                    'updated_at'     => $transactionDate,
                 ]);
 
                 foreach ($items as $item) {

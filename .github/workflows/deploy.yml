@@ -1,0 +1,84 @@
+name: Deploy Static Login Page to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  # Memungkinkan trigger manual dari tab Actions
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-export:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🐘 Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
+          
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: ⚙️ Setup Laravel Environment
+        run: |
+          cp .env.example .env
+          touch database/database.sqlite
+
+      - name: 📥 Install PHP Dependencies (Composer)
+        run: composer install --optimize-autoloader --no-dev --no-interaction --prefer-dist
+
+      - name: 🔑 Generate App Key
+        run: php artisan key:generate
+
+      - name: 📦 Install NPM Dependencies & Build Vite
+        run: |
+          npm ci
+          npm run build
+          
+      - name: 🛠️ Export Static HTML
+        env:
+          # Pastikan path absolut ke GitHub Pages agar aset Vite ter-load dengan benar
+          ASSET_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+          APP_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+        run: |
+          # 1. Siapkan folder dist
+          mkdir -p dist
+          
+          # 2. Salin semua aset publik (termasuk folder build/ dari Vite dan favicon)
+          cp -R public/* dist/
+          # Hapus index.php bawaan Laravel karena kita akan menggantinya dengan HTML statis
+          rm -f dist/index.php
+          
+          # 3. Jalankan server Laravel di background
+          php artisan serve --host=127.0.0.1 --port=8000 &
+          SERVER_PID=$!
+          
+          # Tunggu server siap
+          sleep 3
+          
+          # 4. Unduh render HTML dari route /login dan simpan sebagai index.html utama
+          wget -q -O dist/index.html http://127.0.0.1:8000/login
+          
+          # 5. Fix fallback: Ubah /build/ menjadi ./build/ agar jalan meskipun ASSET_URL tidak sempurna
+          sed -i 's|/build/|./build/|g' dist/index.html
+          
+          # 6. Matikan server
+          kill $SERVER_PID
+
+      - name: 🚀 Deploy to GitHub Pages (gh-pages branch)
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          commit_message: "deploy: update static frontend to GitHub Pages"
+          force_orphan: true

@@ -1,6 +1,6 @@
-# Kasir Abi (Point of Sale System)
+# Tiysa POS (Point of Sale System)
 
-Kasir Abi adalah aplikasi kasir (Point of Sale) berbasis web yang modern, cepat, dan responsif. Dirancang untuk memudahkan pengelolaan transaksi penjualan, manajemen inventaris produk, serta memantau laporan pendapatan secara *real-time* dengan antarmuka pengguna yang elegan dan intuitif.
+Tiysa POS adalah aplikasi kasir (Point of Sale) berbasis web yang modern, cepat, dan responsif. Dirancang untuk memudahkan pengelolaan transaksi penjualan, manajemen inventaris produk, serta memantau laporan pendapatan secara *real-time* dengan antarmuka pengguna yang elegan dan intuitif.
 
 ---
 
@@ -10,7 +10,7 @@ Proyek ini dibangun menggunakan teknologi terbaru dan terbaik untuk memastikan p
 
 - **Framework:** [Laravel 11+](https://laravel.com/) (PHP)
 - **Reaktivitas:** [Livewire 3](https://livewire.laravel.com/) (Dynamic Interfaces without writing JS)
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) (Utility-first framework dengan tema Dark Mode)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) (Utility-first framework dengan tema Light Mode yang modern dan profesional)
 - **Database:** [MySQL](https://www.mysql.com/) / MariaDB
 - **Visualisasi Data:** [Chart.js](https://www.chartjs.org/) (Untuk grafik statistik pendapatan)
 
@@ -28,12 +28,12 @@ Proyek ini dibangun menggunakan teknologi terbaru dan terbaik untuk memastikan p
 
 ## 🚀 Panduan Instalasi (Langkah demi Langkah)
 
-Ikuti langkah-langkah berikut untuk menjalankan proyek Kasir Abi di mesin lokal Anda.
+Ikuti langkah-langkah berikut untuk menjalankan proyek Tiysa POS di mesin lokal Anda.
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/username-anda/kasir-abi.git
-cd kasir-abi
+git clone https://github.com/username-anda/tiysa-pos.git
+cd tiysa-pos
 ```
 
 ### 2. Instalasi Dependensi PHP (Composer)
@@ -57,7 +57,7 @@ Buka file `.env` dan atur koneksi database:
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=kasir_abi
+DB_DATABASE=tiysa_pos
 DB_USERNAME=root
 DB_PASSWORD=
 ```
@@ -120,7 +120,7 @@ Aplikasi ini menggunakan beberapa tabel utama untuk menyimpan data:
 
 - **Blade Components:** Proyek ini memecah antarmuka (UI) menjadi beberapa *Blade Components* yang *reusable* (seperti `sidebar`, `header`, `card`), sehingga kode HTML lebih bersih dan mudah dirawat.
 - **Livewire Reaktivitas:** Halaman **POS Kasir** tidak menggunakan framework JavaScript terpisah (seperti Vue/React), melainkan bergantung pada **Laravel Livewire**. Ini memungkinkan interaksi dinamis (seperti update *cart*, pencarian produk, dan hitung total) langsung ditangani oleh logika PHP di sisi *backend* tanpa perlu *page reload*, memberikan rasa aplikasi SPA (Single Page Application).
-- **Tailwind CSS Utility-First:** Seluruh komponen UI didesain khusus dengan kelas utilitas Tailwind CSS, menerapkan konsep desain responsif serta menggunakan pola warna *Dark Mode* untuk estetika aplikasi yang modern.
+- **Tailwind CSS Utility-First:** Seluruh komponen UI didesain khusus dengan kelas utilitas Tailwind CSS, menerapkan konsep desain responsif serta menggunakan pola warna *Light Mode* (dominasi putih dan biru profesional) untuk estetika aplikasi yang modern.
 
 ---
-*Dibuat untuk sistem POS Kasir Abi. Silakan modifikasi dokumentasi ini menyesuaikan perkembangan proyek Anda.*
+*Dibuat untuk sistem POS Tiysa POS. Silakan modifikasi dokumentasi ini menyesuaikan perkembangan proyek Anda.*

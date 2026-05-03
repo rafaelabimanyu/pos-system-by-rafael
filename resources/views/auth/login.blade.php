@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Login — Kasir Abi</title>
+    <title>Login — Tiysa POS</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +27,7 @@
             <div class="w-16 h-16 bg-gradient-to-br from-brand-500 to-brand-700 rounded-2xl flex items-center justify-center shadow-glow mx-auto mb-4">
                 <i data-lucide="shopping-bag" class="w-8 h-8 text-white"></i>
             </div>
-            <h1 class="text-2xl font-bold text-white tracking-tight">Kasir Abi</h1>
+            <h1 class="text-2xl font-bold text-white tracking-tight">Tiysa POS</h1>
             <p class="text-slate-500 text-sm mt-1">Masuk ke sistem point of sale</p>
         </div>
 
@@ -104,7 +104,7 @@
             </div>
         </div>
 
-        <p class="text-center text-xs text-slate-600 mt-6">&copy; {{ date('Y') }} Kasir Abi. All rights reserved.</p>
+        <p class="text-center text-xs text-slate-600 mt-6">&copy; {{ date('Y') }} Tiysa POS. All rights reserved.</p>
     </div>
 
     <script>document.addEventListener('DOMContentLoaded', () => lucide.createIcons());</script>

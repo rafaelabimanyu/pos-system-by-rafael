@@ -1,6 +1,6 @@
 <table>
     <tr>
-        <td colspan="5">{{ \App\Models\Setting::get('store_name', 'Kasir Abi') }}</td>
+        <td colspan="5">{{ \App\Models\Setting::get('store_name', 'Tiysa POS') }}</td>
     </tr>
     <tr>
         <td colspan="5">Laporan Penjualan</td>

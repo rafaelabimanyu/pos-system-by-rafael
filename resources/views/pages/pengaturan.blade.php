@@ -49,7 +49,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
                             <label class="block text-sm font-medium text-slate-300 mb-1.5">Nama Toko</label>
-                            <input type="text" name="settings[store_name]" value="{{ \App\Models\Setting::get('store_name', 'Kasir Abi') }}" required class="w-full bg-dark-800 border border-dark-600/50 rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-brand-500/50 focus:shadow-glow transition-all">
+                            <input type="text" name="settings[store_name]" value="{{ \App\Models\Setting::get('store_name', 'Tiysa POS') }}" required class="w-full bg-dark-800 border border-dark-600/50 rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-brand-500/50 focus:shadow-glow transition-all">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-slate-300 mb-1.5">Telepon</label>

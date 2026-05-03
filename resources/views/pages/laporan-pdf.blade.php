@@ -24,7 +24,7 @@
 <body>
 
     <div class="header">
-        <div class="store-name">{{ \App\Models\Setting::get('store_name', 'Kasir Abi') }}</div>
+        <div class="store-name">{{ \App\Models\Setting::get('store_name', 'Tiysa POS') }}</div>
         <div class="report-title">LAPORAN PENJUALAN</div>
         <div class="period">Periode: {{ \Carbon\Carbon::parse($startDate)->format('d M Y') }} s/d {{ \Carbon\Carbon::parse($endDate)->format('d M Y') }}</div>
     </div>

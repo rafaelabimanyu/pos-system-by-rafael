@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="id" class="dark">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="Kasir Abi — Sistem Kasir Modern untuk Bisnis Anda">
+    <meta name="description" content="Tiysa POS — Sistem Kasir Modern untuk Bisnis Anda">
 
-    <title>@yield('title', 'Dashboard') — Kasir Abi</title>
+    <title>@yield('title', 'Dashboard') — Tiysa POS</title>
 
     {{-- Google Fonts: Inter --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,7 +69,7 @@
             {{-- Footer --}}
             <footer class="px-6 py-4 border-t border-dark-700/50">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-2 text-sm text-slate-500">
-                    <p>&copy; {{ date('Y') }} {{ \App\Models\Setting::get('store_name', 'Kasir Abi') }}. All rights reserved.</p>
+                    <p>&copy; {{ date('Y') }} {{ \App\Models\Setting::get('store_name', 'Tiysa POS') }}. All rights reserved.</p>
                     <p class="flex items-center gap-1.5">
                         Made with <span class="text-red-400">♥</span> for your business
                     </p>

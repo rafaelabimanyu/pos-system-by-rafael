@@ -78,8 +78,8 @@
 
 /* Base body styles */
 body {
-    background-color: var(--color-dark-900);
-    color: #e2e8f0;
+    background-color: #f8fafc; /* bg-slate-50 */
+    color: #0f172a; /* text-slate-900 */
     font-family: var(--font-sans);
 }
 
@@ -100,7 +100,7 @@ body {
 }
 
 .sidebar-link.active .sidebar-text {
-    color: white;
+    color: var(--color-brand-600);
     font-weight: 600;
 }
 

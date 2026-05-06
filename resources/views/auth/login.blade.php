@@ -34,10 +34,7 @@
     <div class="w-full max-w-[440px] relative z-10">
         {{-- Header Logo & Title --}}
         <div class="text-center mb-10">
-            <div
-                class="w-20 h-20 bg-gradient-to-br from-brand-500 to-brand-700 rounded-2xl flex items-center justify-center shadow-[0_0_50px_rgba(79,70,229,0.4)] mx-auto mb-6 transform hover:scale-105 transition-all duration-300">
-                <i data-lucide="shopping-bag" class="w-10 h-10 text-white"></i>
-            </div>
+            <img src="/logo/image.png" alt="Logo Tiysa POS" class="h-20 w-auto mx-auto mb-6">
             <!-- Menggunakan text-white murni agar kontras maksimal -->
             <h1 class="text-4xl font-extrabold text-white tracking-tight drop-shadow-sm">Tiysa POS</h1>
             <p class="text-slate-300 mt-2 font-medium">Masuk ke sistem point of sale</p>
